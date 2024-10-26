@@ -16,6 +16,7 @@ function App() {
   const [isFinalUnlocked, setIsFinalUnlocked] = useState(false);
 
   const startQuiz = () => setIsStarted(true);
+  const url = 'https://0201-46-135-6-87.ngrok-free.app'
 
   const handleSolve = async (puzzleId, answer) => {
     const correctAnswers = {
@@ -29,7 +30,7 @@ function App() {
     const updatedPuzzles = puzzles.map(p => {
       if (p.id === puzzleId && answer.toLowerCase() === correctAnswers[puzzleId].toLowerCase()) {
         // Make an API call to update the puzzle progress in the database
-        axios.post('http://localhost:3000/progress/update', {
+        axios.post(`${url}/progress/update`, {
           puzzle_id: puzzleId,
           is_solved: true
         })
@@ -55,7 +56,7 @@ function App() {
 
   useEffect(() => {
     // Fetch current progress from the backend
-    axios.get('http://localhost:3000/progress/status')
+    axios.get(`${url}/progress/status`)
       .then(response => {
         const dbProgress = response.data;
 

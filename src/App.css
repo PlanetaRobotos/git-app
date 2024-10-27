@@ -14,23 +14,25 @@
 .puzzles-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 10px;
   /* Increased gap for better separation */
   width: 100%;
   max-width: 390px;
   margin: 0 auto;
   box-sizing: border-box;
+  justify-items: center;
 }
 
 /* Individual puzzle styling */
 .puzzle {
   display: flex;
+  border: 1px solid #BBCCEE;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 15px;
   background-color: #DDEEFF;
-  border-radius: 12px;
+  border-radius: 10px;
   /* Slightly rounder corners */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   /* Subtle shadow */
@@ -38,7 +40,7 @@
   height: 260px;
   max-width: 160px;
   transition: transform 0.2s;
-  border-color: #BBCCEE;
+  min-height: 250px;
 }
 
 /* Hover effect */
@@ -50,7 +52,7 @@
 /* Styling for unlocked puzzle */
 .puzzle.unlocked {
   background-color: #D4EDDA;
-  border-color: #C3E6CB;
+  border: 1px solid #C3E6CB;
 }
 
 /* Heading styling */
@@ -58,25 +60,26 @@
   font-size: 1.1em;
   font-weight: bold;
   color: #333;
-  margin: 0 0 0 0;
+  margin: 0 0 0;
 }
 
 .hint-box {
   background-color: #F8F9FA;
-  /* Light gray background for hints */
   color: #6C757D;
-  /* Dark gray text color for good readability */
-  padding: 5px;
-  min-height: 60px;
-  /* Minimum height to ensure space for text */
+  padding: 10px;
+  min-width: 120px;
+  /* Fixed width for alignment */
+  height: 120px;
+  /* Fixed height for consistency */
   border-radius: 5px;
-  /* Rounded corners for a softer look */
   overflow-y: auto;
-  /* Enable scrolling if the text exceeds the min-height */
-  text-align: center;
-  /* Center-align text within the box */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  /* Subtle shadow for depth */
+  margin-bottom: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 /* Input styling */
@@ -105,6 +108,10 @@ button {
 
 button:hover {
   background-color: #218838;
+}
+
+button:active {
+  transform: scale(0.98);
 }
 
 /* Final puzzle styling */

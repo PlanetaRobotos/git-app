@@ -85,27 +85,32 @@ function App() {
         <p>Loading...</p>
       ) : (
         <div>
-          {puzzles.map((puzzle) => (
-            <div key={puzzle.puzzle_id} className="puzzle">
-              <h2>{puzzle.is_unlocked ? puzzle.puzzle_id : "Locked"}</h2>
-              <p>{puzzle.is_unlocked ? puzzle.instructions : puzzle.hint}</p>
-              {!puzzle.is_unlocked && (
-                <div>
-                  <input
-                    type="text"
-                    placeholder="Answer riddle"
-                    onBlur={(e) => handleSolveRiddle(puzzle.puzzle_id, e.target.value)}
-                  />
-                </div>
-              )}
-              {puzzle.is_unlocked && !puzzle.is_found && (
-                <button onClick={() => handleMarkAsFound(puzzle.puzzle_id)}>
-                  Mark as Found
-                </button>
-              )}
-              {puzzle.is_found && <p>Sketch Found!</p>}
-            </div>
-          ))}
+          <div className="puzzles-container">
+            {puzzles.map((puzzle) => (
+              <div
+                key={puzzle.puzzle_id}
+                className={`puzzle ${puzzle.is_unlocked ? 'unlocked' : ''}`}
+              >
+                <h2>{puzzle.is_unlocked ? puzzle.puzzle_id : "Locked"}</h2>
+                <p>{puzzle.is_unlocked ? puzzle.instructions : puzzle.hint}</p>
+                {!puzzle.is_unlocked && (
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Answer riddle"
+                      onBlur={(e) => handleSolveRiddle(puzzle.puzzle_id, e.target.value)}
+                    />
+                  </div>
+                )}
+                {puzzle.is_unlocked && !puzzle.is_found && (
+                  <button onClick={() => handleMarkAsFound(puzzle.puzzle_id)}>
+                    Mark as Found
+                  </button>
+                )}
+                {puzzle.is_found && <p>Sketch Found!</p>}
+              </div>
+            ))}
+          </div>
 
           {isFinalUnlocked && finalPuzzle && (
             <div className="final-puzzle">
@@ -128,6 +133,7 @@ function App() {
       )}
     </div>
   );
+
 }
 
 export default App;

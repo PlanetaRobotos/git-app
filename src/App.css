@@ -1,57 +1,89 @@
-.puzzle-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  max-width: 400px;
-  width: 100%;
-  margin: 20px auto;
-}
-
-.puzzle {
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+/* General App styling */
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-/* Styling for the locked and solved states */
-.puzzle.locked {
-  background-color: #f8d7da;
-  color: #721c24;
+/* Container for the puzzles grid */
+.puzzles-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
-.puzzle.solved {
-  background-color: #d4edda;
-  color: #155724;
+/* Individual puzzle styling */
+.puzzle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #f9e3e3;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  height: 160px;
+  /* Fixed height to maintain square shape */
+  max-width: 160px;
+  /* Fixed width to prevent overflow */
+  box-sizing: border-box;
 }
 
-/* Specific border-radius for each piece to create a puzzle effect */
-.puzzle:nth-child(1) {
-  border-top-left-radius: 50px;
-  border-bottom-right-radius: 10px;
+/* Styling for unlocked puzzle */
+.puzzle.unlocked {
+  background-color: #d4f7d4;
 }
 
-.puzzle:nth-child(2) {
-  border-top-right-radius: 50px;
-  border-bottom-left-radius: 10px;
+/* Styling for input fields and buttons */
+input[type="text"] {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: calc(100% - 20px);
+  /* Full width without padding overflow */
+  box-sizing: border-box;
 }
 
-.puzzle:nth-child(3) {
-  border-bottom-left-radius: 50px;
-  border-top-right-radius: 10px;
+button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
 }
 
-.puzzle:nth-child(4) {
-  border-bottom-right-radius: 50px;
-  border-top-left-radius: 10px;
+button:hover {
+  background-color: #0056b3;
 }
 
-@media (max-width: 600px) {
-  .puzzle-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
+/* Final puzzle styling */
+.final-puzzle {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f7d4f7;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Prize styling */
+.prize {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #d4e7f7;
+  border-radius: 10px;
+  text-align: center;
 }

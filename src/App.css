@@ -14,7 +14,8 @@
 .puzzles-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 15px;
+  /* Increased gap for better separation */
   width: 100%;
   max-width: 390px;
   margin: 0 auto;
@@ -26,17 +27,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  padding: 10px;
+  justify-content: space-between;
+  padding: 15px;
   background-color: #f9e3e3;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  /* Slightly rounder corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
   text-align: center;
   height: 160px;
-  /* Fixed height to maintain square shape */
   max-width: 160px;
-  /* Fixed width to prevent overflow */
-  box-sizing: border-box;
+  transition: transform 0.2s;
+  /* Adds hover effect */
+}
+
+/* Hover effect */
+.puzzle:hover {
+  transform: translateY(-5px);
+  /* Lifts card slightly on hover */
 }
 
 /* Styling for unlocked puzzle */
@@ -44,17 +52,41 @@
   background-color: #d4f7d4;
 }
 
-/* Styling for input fields and buttons */
-input[type="text"] {
-  margin-top: 10px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: calc(100% - 20px);
-  /* Full width without padding overflow */
-  box-sizing: border-box;
+/* Heading styling */
+.puzzle h4 {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0 8px 0;
 }
 
+/* Hint text styling */
+.hint-text {
+  height: 50px;
+  /* Fixed height for uniformity */
+  max-height: 50px;
+  overflow-y: auto;
+  padding: 8px;
+  font-size: 0.9em;
+  color: #555;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  scrollbar-width: thin;
+}
+
+/* Input styling */
+input[type="text"] {
+  margin-top: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0.9em;
+}
+
+/* Button styling */
 button {
   margin-top: 10px;
   padding: 8px 12px;
@@ -64,6 +96,7 @@ button {
   border-radius: 5px;
   cursor: pointer;
   font-size: 0.9em;
+  transition: background-color 0.2s;
 }
 
 button:hover {
@@ -72,11 +105,14 @@ button:hover {
 
 /* Final puzzle styling */
 .final-puzzle {
-  margin-top: 20px;
+  width: 90%;
+  max-width: 390px;
+  margin: 0 auto;
   padding: 20px;
   background-color: #f7d4f7;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Prize styling */
@@ -86,4 +122,5 @@ button:hover {
   background-color: #d4e7f7;
   border-radius: 10px;
   text-align: center;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }

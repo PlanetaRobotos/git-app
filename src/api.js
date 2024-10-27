@@ -53,10 +53,9 @@ export const getFinalPuzzle = async () => {
   }
 };
 
-// Access the final prize (accessible after solving the final puzzle)
-export const getPrize = async () => {
+export const getPrizeWithPassword = async (password) => {
   try {
-    const response = await axios.get(`${API_URL}/prize`);
+    const response = await axios.post(`${API_URL}/prize`, { answer: password });
     return response.data;
   } catch (error) {
     console.error("Error fetching prize:", error);

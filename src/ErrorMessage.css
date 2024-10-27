@@ -48,7 +48,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 200px) {
   .error-message {
     top: 10px;
     right: 10px;

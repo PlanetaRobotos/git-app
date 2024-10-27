@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getProgressStatus, solveRiddle, markAsFound, getFinalPuzzle, getPrizeWithPassword } from './api';
 import './App.css';
+import ErrorMessage from './ErrorMessage';
 
 function App() {
   const [puzzles, setPuzzles] = useState([]);
@@ -9,6 +10,16 @@ function App() {
   const [prize, setPrize] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const showError = (message) => {
+    setErrorMessage(message);
+
+    // Clear error message after 5 seconds
+    setTimeout(() => {
+      setErrorMessage('');
+    }, 5000);
+  };
 
   // Fetch current puzzle status on mount, excluding the final puzzle
   useEffect(() => {
@@ -35,9 +46,10 @@ function App() {
           puzzle.puzzle_id === puzzleId ? { ...puzzle, is_unlocked: true } : puzzle
         )
       );
+      setErrorMessage('');
     } catch (error) {
       console.error("Error solving riddle:", error);
-      alert("Incorrect answer or error occurred.");
+      showError("Incorrect answer or error occurred."); // Show error message
     }
   };
 
@@ -73,14 +85,21 @@ function App() {
     try {
       const prizeData = await getPrizeWithPassword(password);
       setPrize(prizeData);
+      setErrorMessage(''); // Clear any previous errors
     } catch (error) {
-      alert("Incorrect password or error occurred.");
+      showError("Incorrect password."); // Show error message
     }
   };
+
+  const clearError = () => setErrorMessage('');
 
   return (
     <div className="App">
       <h1>Graffiti Quiz</h1>
+
+      {/* Render ErrorMessage Component */}
+      <ErrorMessage message={errorMessage} onClose={clearError} />
+
       {isLoading ? (
         <p>Loading...</p>
       ) : isFinalUnlocked ? (
@@ -101,7 +120,7 @@ function App() {
         <div className="puzzles-container">
           {puzzles.map((puzzle) => (
             <div key={puzzle.puzzle_id} className={`puzzle ${puzzle.is_unlocked ? 'unlocked' : ''}`}>
-              <h2>{puzzle.is_unlocked ? puzzle.puzzle_id : "Locked"}</h2>
+              <h5>{puzzle.is_unlocked ? puzzle.puzzle_id : "Locked"}</h5>
               <p className="hint-text">{puzzle.is_unlocked ? puzzle.instructions : puzzle.hint}</p>
               {!puzzle.is_unlocked && (
                 <div>

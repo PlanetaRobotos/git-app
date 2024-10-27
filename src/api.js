@@ -1,6 +1,7 @@
 // src/api.js
 import axios from 'axios';
 
+// Define the base API URL. Replace with your actual backend URL
 const API_URL = 'https://giftbackend.vercel.app/progress';
 
 export const getProgressStatus = async () => {

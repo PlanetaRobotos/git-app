@@ -130,7 +130,7 @@ function App() {
         <div className="puzzles-container">
           {puzzles.map((puzzle) => (
             <div key={puzzle.puzzle_id} className={`puzzle ${puzzle.is_unlocked ? 'unlocked' : ''}`}>
-              <h5>{puzzle.is_unlocked ? puzzle.puzzle_id : "Locked"}</h5>
+              <h6>{puzzle.is_unlocked ? puzzle.puzzle_id : "Locked"}</h6>
               <div className="hint-box">
                 {puzzle.is_unlocked ? puzzle.instructions : puzzle.hint}
               </div>

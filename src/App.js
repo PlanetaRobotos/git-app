@@ -11,6 +11,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [answers, setAnswers] = useState({}); // Store answers for each puzzle
 
   const showError = (message) => {
     setErrorMessage(''); // Clear temporarily to force repaint
@@ -43,12 +44,14 @@ function App() {
   // Handle riddle solving to unlock puzzles
   const handleSolveRiddle = async (puzzleId, answer) => {
     try {
+      const answer = answers[puzzleId] || ""; // Get the answer for the specific puzzle
       await solveRiddle(puzzleId, answer);
       setPuzzles(prevPuzzles =>
         prevPuzzles.map(puzzle =>
           puzzle.puzzle_id === puzzleId ? { ...puzzle, is_unlocked: true } : puzzle
         )
       );
+      setAnswers({ ...answers, [puzzleId]: "" }); // Clear answer after submission
       setErrorMessage('');
     } catch (error) {
       console.error("Error solving riddle:", error);
@@ -96,6 +99,10 @@ function App() {
 
   const clearError = () => setErrorMessage('');
 
+  const handleAnswerChange = (puzzleId, value) => {
+    setAnswers({ ...answers, [puzzleId]: value });
+  };
+
   return (
     <div className="App">
       <h1>Graffiti Quiz</h1>
@@ -124,14 +131,18 @@ function App() {
           {puzzles.map((puzzle) => (
             <div key={puzzle.puzzle_id} className={`puzzle ${puzzle.is_unlocked ? 'unlocked' : ''}`}>
               <h5>{puzzle.is_unlocked ? puzzle.puzzle_id : "Locked"}</h5>
-              <p className="hint-text">{puzzle.is_unlocked ? puzzle.instructions : puzzle.hint}</p>
+              <div className="hint-box">
+                {puzzle.is_unlocked ? puzzle.instructions : puzzle.hint}
+              </div>
               {!puzzle.is_unlocked && (
                 <div>
                   <input
                     type="text"
                     placeholder="Answer riddle"
-                    onBlur={(e) => handleSolveRiddle(puzzle.puzzle_id, e.target.value)}
+                    value={answers[puzzle.puzzle_id] || ""}
+                    onChange={(e) => handleAnswerChange(puzzle.puzzle_id, e.target.value)}
                   />
+                  <button onClick={() => handleSolveRiddle(puzzle.puzzle_id)}>Submit</button>
                 </div>
               )}
               {puzzle.is_unlocked && !puzzle.is_found && (

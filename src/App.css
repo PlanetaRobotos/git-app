@@ -29,16 +29,16 @@
   align-items: center;
   justify-content: space-between;
   padding: 15px;
-  background-color: #75bbe9;
+  background-color: #DDEEFF;
   border-radius: 12px;
   /* Slightly rounder corners */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   /* Subtle shadow */
   text-align: center;
-  height: 160px;
+  height: 200px;
   max-width: 160px;
   transition: transform 0.2s;
-  /* Adds hover effect */
+  border-color: #BBCCEE;
 }
 
 /* Hover effect */
@@ -49,7 +49,8 @@
 
 /* Styling for unlocked puzzle */
 .puzzle.unlocked {
-  background-color: #d4f7d4;
+  background-color: #D4EDDA;
+  border-color: #C3E6CB;
 }
 
 /* Heading styling */
@@ -58,6 +59,28 @@
   font-weight: bold;
   color: #333;
   margin: 0 0 8px 0;
+}
+
+.hint-box {
+  background-color: #F8F9FA;
+  /* Light gray background for hints */
+  color: #6C757D;
+  /* Dark gray text color for good readability */
+  padding: 10px;
+  width: 100%;
+  /* Make it responsive to the container */
+  max-width: 200px;
+  /* Fixed width */
+  min-height: 60px;
+  /* Minimum height to ensure space for text */
+  border-radius: 5px;
+  /* Rounded corners for a softer look */
+  overflow-y: auto;
+  /* Enable scrolling if the text exceeds the min-height */
+  text-align: center;
+  /* Center-align text within the box */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow for depth */
 }
 
 /* Hint text styling */
@@ -90,7 +113,7 @@ input[type="text"] {
 button {
   margin-top: 10px;
   padding: 8px 12px;
-  background-color: #007bff;
+  background-color: #28A745;
   color: white;
   border: none;
   border-radius: 5px;
@@ -100,7 +123,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #218838;
 }
 
 /* Final puzzle styling */
@@ -123,4 +146,22 @@ button:hover {
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.puzzle button {
+  margin-top: 5px;
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.puzzle button:hover {
+  background-color: #45a049;
+}
+
+.puzzle button:active {
+  transform: scale(0.98);
 }

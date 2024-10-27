@@ -13,7 +13,10 @@ function App() {
   const [errorMessage, setErrorMessage] = useState('');
 
   const showError = (message) => {
-    setErrorMessage(message);
+    setErrorMessage(''); // Clear temporarily to force repaint
+    setTimeout(() => {
+      setErrorMessage(message);
+    }, 50); // Small delay to re-trigger rendering
 
     // Clear error message after 5 seconds
     setTimeout(() => {

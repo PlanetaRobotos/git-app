@@ -105,7 +105,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Graffiti Quiz</h1>
+      <h1>Artful Riddles</h1>
 
       {/* Render ErrorMessage Component */}
       <ErrorMessage message={errorMessage} onClose={clearError} />
@@ -147,10 +147,10 @@ function App() {
               )}
               {puzzle.is_unlocked && !puzzle.is_found && (
                 <button onClick={() => handleMarkAsFound(puzzle.puzzle_id)}>
-                  Mark as Found
+                  Mark as Done
                 </button>
               )}
-              {puzzle.is_found && <p>Sketch Found!</p>}
+              {puzzle.is_found && <p>Сheerio!</p>}
             </div>
           ))}
         </div>

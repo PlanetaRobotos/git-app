@@ -76,6 +76,7 @@
   overflow-x: hidden;
   /* Add padding to prevent text cutoff */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
   margin: 5px;
   text-align: center;
   box-sizing: border-box;
